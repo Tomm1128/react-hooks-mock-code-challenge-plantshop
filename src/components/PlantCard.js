@@ -30,6 +30,7 @@ function PlantCard({ plant: { id, name, image, price }, onUpdate }) {
         value={newPrice}
         onChange={(event) => setNewPrice(event.target.value)}
       ></input>
+      <button id="delete-btn">🗑️</button>
       {inStock ? (
         <button className="primary" onClick={updateStock}>
           In Stock
