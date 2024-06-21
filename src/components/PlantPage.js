@@ -6,6 +6,7 @@ import { getPlants, createPlant } from "../utils/fetchers"
 
 function PlantPage() {
   const [plants, setPlants] = useState([])
+  const [search, setSearch] = useState("")
 
   useEffect(() => {
     getPlants().then((plantList) => setPlants(plantList))
@@ -17,11 +18,15 @@ function PlantPage() {
     )
   }
 
+  const filteredPlants = plants.filter((plant) => {
+    return search === "" ? true : plant.name.toLowerCase().includes(search)
+  })
+
   return (
     <main>
       <NewPlantForm submitPlant={addPlant} />
-      <Search />
-      <PlantList plantList={plants} />
+      <Search searchInput={search} onSearch={setSearch} />
+      <PlantList plantList={filteredPlants} />
     </main>
   )
 }
