@@ -1,6 +1,7 @@
 import React, { useState } from "react"
+import { updatePlant } from "../utils/fetchers"
 
-function PlantCard({ plant: { name, image, price } }) {
+function PlantCard({ plant: { id, name, image, price }, onUpdate }) {
   const [inStock, setStock] = useState(true)
   const [isHidden, setHidden] = useState(true)
   const [newPrice, setNewPrice] = useState(0)
@@ -9,6 +10,10 @@ function PlantCard({ plant: { name, image, price } }) {
   const showEditPrice = () => setHidden(!isHidden)
 
   const updatePrice = (event) => {
+    const priceInput = {
+      price: Number(newPrice),
+    }
+    updatePlant(priceInput, id).then((updatedPlant) => onUpdate(updatedPlant))
     showEditPrice()
   }
 

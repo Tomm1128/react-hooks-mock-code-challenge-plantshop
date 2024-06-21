@@ -18,6 +18,17 @@ function PlantPage() {
     )
   }
 
+  const editPlant = (updatedData) => {
+    const updatedPlants = plants.map((plant) => {
+      if (plant.id === updatedData.id) {
+        return updatedData
+      } else {
+        return plant
+      }
+    })
+    setPlants(updatedPlants)
+  }
+
   const filteredPlants = plants.filter((plant) => {
     return search === "" ? true : plant.name.toLowerCase().includes(search)
   })
@@ -26,7 +37,7 @@ function PlantPage() {
     <main>
       <NewPlantForm submitPlant={addPlant} />
       <Search searchInput={search} onSearch={setSearch} />
-      <PlantList plantList={filteredPlants} />
+      <PlantList plantList={filteredPlants} onUpdate={editPlant} />
     </main>
   )
 }

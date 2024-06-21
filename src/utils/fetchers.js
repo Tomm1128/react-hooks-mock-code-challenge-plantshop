@@ -1,4 +1,4 @@
-const url = "http://localhost:6001/plants"
+const url = "http://localhost:6001/plants/"
 
 const getPlants = () => {
   return fetch(url).then((resp) => resp.json())
@@ -15,4 +15,15 @@ const createPlant = (newPlant) => {
   }).then((resp) => resp.json())
 }
 
-export { getPlants, createPlant }
+const updatePlant = (updateValue, id) => {
+  return fetch(url + id, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updateValue),
+  }).then((resp) => resp.json())
+}
+
+export { getPlants, createPlant, updatePlant }
