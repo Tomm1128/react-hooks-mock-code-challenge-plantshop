@@ -11,13 +11,11 @@ function PlantPage() {
     getPlants().then((plantList) => setPlants(plantList))
   }, [])
 
-  console.log(plants)
-
   return (
     <main>
       <NewPlantForm />
       <Search />
-      <PlantList />
+      <PlantList plantList={plants} />
     </main>
   )
 }
