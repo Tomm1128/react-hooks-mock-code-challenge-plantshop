@@ -4,4 +4,15 @@ const getPlants = () => {
   return fetch(url).then((resp) => resp.json())
 }
 
-export { getPlants }
+const createPlant = (newPlant) => {
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newPlant),
+  }).then((resp) => resp.json())
+}
+
+export { getPlants, createPlant }
