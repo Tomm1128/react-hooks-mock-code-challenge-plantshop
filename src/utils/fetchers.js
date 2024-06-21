@@ -15,14 +15,14 @@ const createPlant = (newPlant) => {
   }).then((resp) => resp.json())
 }
 
-const updatePlant = (updateValue, id) => {
+const updatePlant = (updatedValue, id) => {
   return fetch(url + id, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(updateValue),
+    body: JSON.stringify(updatedValue),
   }).then((resp) => resp.json())
 }
 

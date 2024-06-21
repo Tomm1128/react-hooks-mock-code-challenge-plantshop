@@ -20,11 +20,7 @@ function PlantPage() {
 
   const editPlant = (updatedData) => {
     const updatedPlants = plants.map((plant) => {
-      if (plant.id === updatedData.id) {
-        return updatedData
-      } else {
-        return plant
-      }
+      return plant.id === updatedData.id ? updatedData : plant
     })
     setPlants(updatedPlants)
   }
