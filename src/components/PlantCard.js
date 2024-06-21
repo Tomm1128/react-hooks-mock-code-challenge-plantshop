@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { updatePlant } from "../utils/fetchers"
+import { updatePlant, deletePlant } from "../utils/fetchers"
 
-function PlantCard({ plant: { id, name, image, price }, onUpdate }) {
+function PlantCard({ plant: { id, name, image, price }, onUpdate, onDelete }) {
   const [inStock, setStock] = useState(true)
   const [isHidden, setHidden] = useState(true)
   const [newPrice, setNewPrice] = useState(0)
@@ -17,6 +17,10 @@ function PlantCard({ plant: { id, name, image, price }, onUpdate }) {
     showEditPrice()
   }
 
+  const handleDelete = () => {
+    deletePlant(id).then(() => onDelete(id))
+  }
+
   return (
     <li className="card">
       <img src={image} alt={"plant name"} />
@@ -30,7 +34,9 @@ function PlantCard({ plant: { id, name, image, price }, onUpdate }) {
         value={newPrice}
         onChange={(event) => setNewPrice(event.target.value)}
       ></input>
-      <button id="delete-btn">🗑️</button>
+      <button id="delete-btn" onClick={handleDelete}>
+        🗑️
+      </button>
       {inStock ? (
         <button className="primary" onClick={updateStock}>
           In Stock

@@ -26,4 +26,14 @@ const updatePlant = (updateValue, id) => {
   }).then((resp) => resp.json())
 }
 
-export { getPlants, createPlant, updatePlant }
+const deletePlant = (id) => {
+  return fetch(url + id, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  }).then((resp) => resp.json())
+}
+
+export { getPlants, createPlant, updatePlant, deletePlant }

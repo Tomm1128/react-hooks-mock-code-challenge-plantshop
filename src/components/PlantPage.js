@@ -29,6 +29,11 @@ function PlantPage() {
     setPlants(updatedPlants)
   }
 
+  const removePlant = (id) => {
+    const updatedPlants = plants.filter((plant) => plant.id !== id)
+    setPlants(updatedPlants)
+  }
+
   const filteredPlants = plants.filter((plant) => {
     return search === "" ? true : plant.name.toLowerCase().includes(search)
   })
@@ -37,7 +42,11 @@ function PlantPage() {
     <main>
       <NewPlantForm submitPlant={addPlant} />
       <Search searchInput={search} onSearch={setSearch} />
-      <PlantList plantList={filteredPlants} onUpdate={editPlant} />
+      <PlantList
+        plantList={filteredPlants}
+        onUpdate={editPlant}
+        onDelete={removePlant}
+      />
     </main>
   )
 }
